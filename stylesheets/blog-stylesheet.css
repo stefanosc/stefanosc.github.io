@@ -1,0 +1,88 @@
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+div#aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  padding: 3% 3% 3% 2%;
+  text-align: right;
+  font-family: "Lucida Console", Monaco, monospace;
+  border-right: 1px dashed #ccc;
+}
+
+#profile img {
+  max-width: 100%;
+}
+
+#aside h2 {
+  float: right;
+  max-width: 100%;
+  margin: 5px 0;
+  font-size: 1.8em;
+}
+
+#aside p {
+  font-size: 0.9em;
+  margin-bottom: 10%;
+}
+
+#aside ul {
+  list-style-type: none;
+  margin-top: 10%;
+  font-size: 1.5em;
+}
+
+#aside li {
+  margin-bottom: 3%;
+}
+
+#navbar a {
+  color: gray;
+  text-decoration: none;
+}
+
+#navbar a:hover {
+  background: #E6DCFA;
+}
+
+#social-profiles img {
+  margin-left: 2%;
+  max-width: 100%;
+}
+
+
+/*********************
+*** CONTENT STYLES ***
+*********************/
+
+div#content {
+  width: 53%;
+  padding: 3% 5%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+#content h1 {
+  display: inline-block;
+  margin-top: 0.5em;
+  float: left;
+}
+
+#title p {
+  float: left;
+  display: block;
+  margin: 4.5% 0 2% 2%;
+}
+
+#content-body {
+  line-height: 1.6em;
+  letter-spacing: 0.15em;
+}
