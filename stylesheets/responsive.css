@@ -76,7 +76,7 @@ a {
   }
 }
 
-@media screen and ((max-width: 720px)|(-webkit-device-pixel-ratio:3)) {
+@media screen and (max-width: 720px) {
   #side-a ul li {
     font-size:1em;
   }
