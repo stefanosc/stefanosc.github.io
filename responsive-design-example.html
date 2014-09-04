@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/stylesheets/responsive.css">
+  <title>Responsive Design and Fluid Layouts</title>
+</head>
+<body>
+
+  <div id="wrapper">
+
+    <div id="header">
+      HEADER with some other stuff written along the top
+    </div>
+
+    <div id="container">
+      <div id="side-a">
+         <ul>
+          <li><a href="#"> Home </a></li>
+          <li><a href="#"> Profile </a></li>
+          <li><a href="#"> Stuff </a></li>
+          <li><a href="#"> Pictures </a></li>
+        </ul>
+      </div>
+
+    <div id="content">
+      <img src='http://placekitten.com/g/800/300'>
+      <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.
+
+        Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
+      </p>
+
+      <img src='http://placekitten.com/g/800/300'>
+      <p>Beetroot water spinach okra water chestnut ricebean pea catsear courgette summer purslane. Water spinach arugula pea tatsoi aubergine spring onion bush tomato kale radicchio turnip chicory salsify pea sprouts fava bean. Dandelion zucchini burdock yarrow chickpea dandelion sorrel courgette turnip greens tigernut soybean radish artichoke wattle seed endive groundnut broccoli arugula.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div id="footer">
+    FOOTER
+  </div>
+
+  <div class="reflection">
+
+    <h2>What is Responsive Design</h2>
+    <p>
+      In order to understand responsive design we need to first define other approaches / strategies used in web design, in fact responsive design at the basic level is a combination of fluid layouts and adaptive layouts.
+    </p>
+    <p>
+      Fluid layouts leverage the ability of CSS to specify the size of elements in percentages and other relative measures (em). The advantage of a fluid layout is that the elements on the page automatically adjust as the vieport changes.
+    </p>
+    <p>
+      Adaptive layout use mainly @media queries as standardized in CSS3 to apply different styles based on the various conditions. The most common condition to use is to change styles based on viewport width.<br>
+      With adaptive layout we could for example hide an element on mobile devices or change its position.
+    </p>
+    <p>
+      When used skillfully the combination of fluid and adaptive layouts can modify the user experience to make it optimal on all devices.
+    </p>
+
+    <h2>What I Learned Today</h2>
+    <p>
+      It's been an incredible challenge, during which I learned so much in many ways and it has also been a great and so much fun experience to pair with a fellow developer.
+    </p>
+    <p>
+      By focusing and giving myself time limits I have been able to quickly clarify the main concepts beyond responsive web design.
+      I was able to further solidify my understanding of css positioning and then implement relative dimensions to make the layout fluid.<br>
+      It was good to review the use of the @media query in CSS and understand how we can use it to define styles based on different parameters.
+    </p>
+    <p>
+      My pair and I both had a good aha moment when we clarified how to scale font size based on viewport. Initially we were unsure how to best implement the scaling of fonts and after a quick research and some testing it was clear that we needed to use @media queries.<br>
+      A great question on StackOverflow was helpful <a href="http://stackoverflow.com/questions/15649244/responsive-font-size">Responsive Font Size</a>.
+    </p>
+
+    <h2>Additional Resources: viewport meta tag and @viewport CSS rule</h2>
+    <p>
+      In the process of clarifying the different aspects of responsive design I wanted to clarify the role of the viewport meta tag.<br>
+      This is a key aspect in creating responsive designs. I found great article on tutsplus.com : <a href="http://webdesign.tutsplus.com/articles/quick-tip-dont-forget-the-viewport-meta-tag--webdesign-5972">Quick Tip: Don't Forget the Viewport Meta Tag</a>.
+    </p>
+
+  </div>
+
+</div>
+</body>
+</html>
