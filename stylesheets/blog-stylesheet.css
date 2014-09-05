@@ -27,7 +27,6 @@ div#aside {
 }
 
 #aside h2 {
-  float: right;
   max-width: 100%;
   margin: 5px 0;
   font-size: 1.8em;
@@ -49,12 +48,16 @@ div#aside {
   margin-bottom: 3%;
 }
 
-#navbar a {
+nav {
+  display: block;
+}
+
+nav a {
   color: gray;
   text-decoration: none;
 }
 
-#navbar a:hover {
+nav a:hover {
   background: #E6DCFA;
 }
 
@@ -79,14 +82,12 @@ div#content {
 
 #content h1 {
   display: inline-block;
-  margin-top: 0.5em;
-  float: left;
+  margin: 0 4% 4% 0;
 }
 
-#title p {
-  float: left;
-  display: block;
-  margin: 4.5% 0 2% 2%;
+#date {
+  display: inline-block;
+  margin: 0 0 3%;
 }
 
 #content-body {
