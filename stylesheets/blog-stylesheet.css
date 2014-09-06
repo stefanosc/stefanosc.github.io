@@ -1,10 +1,146 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,700);
 
+/*********************
+**** HTML5 RESET ****
+*********************/
+
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
+body{line-height:1}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+nav ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:none}
+a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}
+ins{background-color:#ff9;color:#000;text-decoration:none}
+mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}
+del{text-decoration:line-through}
+abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}
+table{border-collapse:collapse;border-spacing:0}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
+input,select{vertical-align:middle}
+
+
+/***********************
+**** GENERAL STYLES ****
+***********************/
+
+
 .group:after {
   content: "";
   display: table;
   clear: both;
 }
+
+p {
+  margin: 1em 0;
+}
+
+#content, #home {
+  font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+/****************************
+*** HOME ANIMATION STYLES ***
+****************************/
+
+#fade_1 {
+  -webkit-animation: fade_in 2s; /* Chrome, Safari, Opera */
+  animation: fade_in 2s ;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fade_in {
+    0% {color: white;}
+    20% {color: white;}
+    from {color: white;}
+    to   {color: black;}
+}
+
+/* Standard syntax */
+@keyframes fade_in {
+    0% {color: white;}
+    20% {color: white;}
+    from {color: white;}
+    to   {color: black;}
+}
+
+#fade_2 {
+  -webkit-animation: fade_tagline 2.5s; /* Chrome, Safari, Opera */
+  animation: fade_tagline 2.5s ;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fade_tagline {
+    0% {color: white;}
+    60% {color: white;}
+    from {color: white;}
+    to   {color: black;}
+}
+
+/* Standard syntax */
+@keyframes fade_tagline {
+    0% {color: white;}
+    60% {color: white;}
+    from {color: white;}
+    to   {color: black;}
+}
+
+#home a {
+  -webkit-animation: fade_menu 2.5s; /* Chrome, Safari, Opera */
+  animation: fade_menu 2.5s ;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fade_menu {
+    0% {color: white;}
+    80% {color: white;}
+    from {color: white;}
+    to   {color: gray;}
+}
+
+/* Standard syntax */
+@keyframes fade_menu {
+    0% {color: white;}
+    80% {color: white;}
+    from {color: white;}
+    to   {color: gray;}
+}
+
+
+/*********************
+**** HOME STYLES ****
+*********************/
+
+#home {
+  width: 92%;
+  margin: 20% 4%;
+}
+
+#home p, #home h1, #home ul {
+  text-align: center;
+}
+
+#home p, #home li {
+  font-size: 1.4em;
+}
+
+#home li {
+  display: inline-block;
+  padding: 0 1%;
+
+}
+
+#home a {
+  text-decoration: underline;
+}
+
+/*********************
+*** ASIDE STYLES ***
+*********************/
 
 div#aside {
   position: fixed;
@@ -38,7 +174,6 @@ div#aside {
 }
 
 #aside ul {
-  list-style-type: none;
   margin-top: 10%;
   padding: 0;
   font-size: 1.5em;
@@ -77,7 +212,6 @@ div#content {
   position: absolute;
   top: 0;
   right: 0;
-  font-family: 'Raleway', sans-serif;
 }
 
 #content h1 {
