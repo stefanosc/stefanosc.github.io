@@ -171,6 +171,7 @@ div#aside {
 #aside p {
   font-size: 0.9em;
   margin-bottom: 10%;
+  line-height: 1.4em;
 }
 
 #aside ul {
