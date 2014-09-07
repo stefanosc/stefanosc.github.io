@@ -142,7 +142,7 @@ h1 {
 *** ASIDE STYLES ***
 *********************/
 
-div#aside {
+aside {
   position: fixed;
   top: 0;
   left: 0;
@@ -154,7 +154,7 @@ div#aside {
   overflow-y: auto;
 }
 
-#aside .wrapper {
+aside .wrapper {
   padding: 8%;
 }
 
@@ -162,25 +162,25 @@ div#aside {
   max-width: 100%;
 }
 
-#aside h2 {
+aside h2 {
   max-width: 100%;
   margin: 5px 0;
   font-size: 1.8em;
 }
 
-#aside p {
+aside p {
   font-size: 0.9em;
   margin-bottom: 10%;
   line-height: 1.4em;
 }
 
-#aside ul {
+aside ul {
   margin-top: 10%;
   padding: 0;
   font-size: 1.5em;
 }
 
-#aside li {
+aside li {
   margin-bottom: 3%;
 }
 
@@ -207,7 +207,7 @@ nav a:hover {
 *** CONTENT STYLES ***
 *********************/
 
-div#content {
+section#content {
   width: 58%;
   padding: 3% 5%;
   position: absolute;
