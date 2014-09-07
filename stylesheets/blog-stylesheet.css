@@ -217,15 +217,24 @@ section#content {
 
 #content h1 {
   display: inline-block;
-  margin: 0 4% 4% 0;
+  margin: 0 4% 2% 0;
 }
 
 #date {
   display: inline-block;
-  margin: 0 0 3%;
+  margin: 0 0 2%;
 }
 
 #content-body {
   line-height: 1.6em;
   letter-spacing: 0.01em;
+}
+
+.continue-reading {
+  border-top: 1px dashed gray;
+  padding-top: 1em;
+}
+
+article {
+  margin-bottom: 4em;
 }
