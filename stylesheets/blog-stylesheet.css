@@ -43,6 +43,10 @@ h1 {
   font-size: 2em;
 }
 
+ul {
+  padding: 1em 0 1em 1.5em;
+}
+
 /****************************
 *** HOME ANIMATION STYLES ***
 ****************************/
@@ -215,17 +219,17 @@ section#content {
   right: 0;
 }
 
-#content h1 {
+section h1 {
   display: inline-block;
   margin: 0 4% 2% 0;
 }
 
-#date {
+.date {
   display: inline-block;
   margin: 0 0 2%;
 }
 
-#content-body {
+div.content-body {
   line-height: 1.6em;
   letter-spacing: 0.01em;
 }
