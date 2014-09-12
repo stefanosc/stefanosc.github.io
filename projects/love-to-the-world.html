@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="fairy_game.css">
+  <title>Love to the World</title>
+</head>
+<body>
+<header>
+  <h1>Welcome to a World of Love and Joy</h1>
+  <p>
+    You are the Magic Love Fairy, you have arrived to this world  to fulfill your heart wish to spread love throughout the universe<br>
+    You need to release at least 8 hearts in the world to complete your first mission.<br>
+    You can move using the arrows on your keyboard and press "h" to release a heart :)
+  </p>
+</header>
+<section>
+  <div id="world">
+    <img src="imgs/world.png">
+    <img id="fairy" src="imgs/colorful.png">
+  </div>
+</section>
+<script type="text/javascript">
+  var world = {love: [],
+               size: {x: 6, y:5},
+               positionTaken: function (position) {
+                 for (var i = world.love.length - 1; i >= 0; i--) {
+                   if (this.love[i].position.x == position.x && this.love[i].position.y == position.y ) {
+                     return true;
+                   }
+                 }
+               }
+               };
+
+  var fairy = {position: {x: 0, y: 0} };
+
+  var worldDiv = document.getElementById('world');
+  var fairyImg = document.getElementById('fairy');
+
+  document.onkeydown = play;
+
+
+  function play (e) {
+
+    // set vertical and horizontal offset to calculate positions on the grid
+    h_offset = 117;
+    v_offset = 134;
+
+    // move up when detecting key up
+    if (e.which == 38 ) {
+      if ( fairy.position.y > 0 ) {
+        fairy.position.y -= 1;
+        fairyImg.style.top = (fairy.position.y * v_offset) + 'px';
+      } else {
+        pleaseStay();
+      }
+    }
+
+    // move down when detecting key down
+    if (e.which == 40 ) {
+      if ( fairy.position.y < (world.size.y - 1) ) {
+        fairy.position.y += 1;
+        fairyImg.style.top = (fairy.position.y * v_offset) + 'px';
+      } else {
+        pleaseStay();
+      }
+    }
+
+    // move left when detecting key left
+    if (e.which == 37 ) {
+      if ( fairy.position.x > 0 ) {
+        fairy.position.x -= 1;
+        fairyImg.style.left = (fairy.position.x * h_offset) + 'px';
+      } else {
+        pleaseStay();
+      }
+    }
+
+    // move right when detecting key right
+    if (e.which == 39 ) {
+      if ( fairy.position.x < (world.size.x - 1) ) {
+        fairy.position.x += 1;
+        fairyImg.style.left = (fairy.position.x * h_offset) + 'px';
+      } else {
+        pleaseStay();
+      }
+    }
+
+    // spread love when detecting key h
+    if (e.which == 72 ) {
+      if (world.positionTaken(fairy.position)) {
+        pleaseLoveOthers();
+      } else {
+        var heart = {position: {x: fairy.position.x, y: fairy.position.y}};
+        world.love.push(heart);
+        var heartTop =  (heart.position.y * v_offset + 100) + "px";
+        var heartLeft = (heart.position.x * h_offset + 65) + "px";
+
+        fairyImg.src = "imgs/colorful.gif";
+        appendHeartDelayed(heartTop, heartLeft);
+        restoreFairyDelayed('imgs/colorful.png');
+
+        if (world.love.length == 8) {
+          world.gratitude();
+        }
+      }
+    }
+
+  }
+
+
+  function createHeartImg (top, left) {
+    var heartImg = document.createElement("img");
+    heartImg.setAttribute('src', 'imgs/heart.gif');
+    heartImg.className = "heart";
+    heartImg.style.top = top;
+    heartImg.style.left = left;
+    return heartImg;
+  }
+
+  function appendHeartDelayed(top, left) {
+   setTimeout(function() { worldDiv.appendChild(createHeartImg(top, left)); }, 900);
+  }
+
+  function restoreFairyDelayed(src) {
+   setTimeout(function() { fairyImg.src = src; }, 1200);
+  }
+
+  function Delayed(src) {
+
+  }
+
+  world.gratitude = function () {
+    setTimeout(function() {alert("Thank for making the world a better place :) \n You have completed your first mission");}, 1500);
+  };
+
+  function pleaseStay () {
+    alert("Oops you are already at the edge of this world, please stay to spread the love");
+  }
+
+  function pleaseLoveOthers () {
+    alert("Thank you for sharing love with the world, you have already been here, please share love in other places too :)");
+  }
+
+</script>
+</body>
+</html>
