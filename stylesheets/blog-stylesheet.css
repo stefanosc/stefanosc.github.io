@@ -55,6 +55,12 @@ ul {
   padding: 1em 0 1em 1.5em;
 }
 
+blockquote {
+  padding: 4%;
+  margin-bottom: 3%;
+  background: aliceblue;
+}
+
 /****************************
 *** HOME ANIMATION STYLES ***
 ****************************/

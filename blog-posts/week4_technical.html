@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/prism-m.css">
+  <script src="../assets/prism.js"></script>
+  <title>Ruby Enumerable#group_by not very popular but very interesting method</title>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-54343932-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+<body>
+  <aside>
+    <div class="wrapper">
+      <div class="group" id="profile">
+        <img src="../imgs/stefano-schiavi_r.png">
+        <h2>Stefano Schiavi</h2>
+      </div>
+      <nav class="group">
+        <ul>
+          <li><a href="/about-me.html">About Me</a></li>
+          <li><a href="/blog-posts/">Blog</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <p>
+        Passionate explorer of life interested in creating great solutions with the use of code & technology to contribute to the world<br>
+        I am deeply inspired and motivated by <a href="http://www.balancedview.org">Balanced View</a>
+      </p>
+      <div class="group" id="social-profiles">
+        <a href="https://github.com/stefanosc"><img src="../imgs/GitHub-Mark.png"></a>
+        <a href="https://www.facebook.com/stefanoschiavi"><img src="../imgs/fb-Logo_blue.png"></a>
+        <a href="https://www.linkedin.com/profile/view?id=257399430"><img src="../imgs/LinkedIn.png"></a>
+        <a href="https://twitter.com/stefanoschiavi"><img src="../imgs/Twitter_logo_blue.png"></a>
+      </div>
+    </div>
+  </aside>
+  <section id="content">
+    <article>
+      <div class="group title">
+        <h1>Ruby Enumerable#group_by not very popular but very interesting method</h1>
+        <p class="date">Sep 19th, 2014</p>
+      </div>
+      <div class="content-body">
+        <p>
+          As part of my DevBootcamp course I am coming across several methods that I used very often but discovered new aspects, and I also came across other methods that I never really used but are very interesting to manipulate and process data.
+        </p>
+
+        <p>
+          A great example of the latter category is Enumerable#group_by. This is a very cool method that can come handy when you have a long array and you need to organize them in a bit more sophisticated way than something like <pre><code class="language-ruby">some_array.sort</code></pre> or <pre><code class="language-ruby">some_array.sort_by {|item| item.some_method }</code></pre> could do.<br>
+          Let's take a quick look at what Enumerable#group_by can do for us.
+        </p>
+<pre><code class="language-ruby">[43] pry(main)> a
+=> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+[44] pry(main)> a.group_by { |item| item * 2}
+=> {2=>[1], 4=>[2], 6=>[3], 8=>[4], 10=>[5], 12=>[6], 14=>[7], 16=>[8], 18=>[9], 20=>[10]}
+
+[45] pry(main)> a.group_by { |item| item % 2 }
+=> {1=>[1, 3, 5, 7, 9], 0=>[2, 4, 6, 8, 10]}
+
+[46] pry(main)> a.group_by { |item| item % 2 == 0 }
+=> {false=>[1, 3, 5, 7, 9], true=>[2, 4, 6, 8, 10]}
+
+[47] pry(main)> a.group_by { |item| item.to_s.match(/\d/)[0] }
+=> {"1"=>[1, 10], "2"=>[2], "3"=>[3], "4"=>[4], "5"=>[5], "6"=>[6], "7"=>[7], "8"=>[8], "9"=>[9]}
+</code></pre>
+
+        <p>
+          Wow, that's quite a bit of magic. If you ready the ruby-docs you will find:
+          <blockquote>
+            Groups the collection by result of the block. Returns a hash where the keys are the evaluated result from the block and the values are arrays of elements in the collection that correspond to the key.
+          </blockquote>
+          Let's take another look.
+        </p>
+<pre><code class="language-ruby">[48] pry(main)> a.group_by { |item| "I am number " + item.to_s }
+=> {"I am number 1"=>[1],
+ "I am number 2"=>[2],
+ "I am number 3"=>[3],
+ "I am number 4"=>[4],
+ "I am number 5"=>[5],
+ "I am number 6"=>[6],
+ "I am number 7"=>[7],
+ "I am number 8"=>[8],
+ "I am number 9"=>[9],
+ "I am number 10"=>[10]}
+</code></pre>
+        <p>
+          We can see how this method can come handy to process and extract data from a Range or Array object.
+        </p>
+      </div>
+    </article>
+  </section>
+
+</body>
+</html>
