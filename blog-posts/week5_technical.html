@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/prism-m.css">
+  <script src="../assets/prism.js"></script>
+  <title>Class in Ruby what is it and how to use it</title>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-54343932-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+<body>
+  <aside>
+    <div class="wrapper">
+      <div class="group" id="profile">
+        <img src="../imgs/stefano-schiavi_r.png">
+        <h2>Stefano Schiavi</h2>
+      </div>
+      <nav class="group">
+        <ul>
+          <li><a href="/about-me.html">About Me</a></li>
+          <li><a href="/blog-posts/">Blog</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <p>
+        Passionate explorer of life interested in creating great solutions with the use of code & technology to contribute to the world<br>
+        I am deeply inspired and motivated by <a href="http://www.balancedview.org">Balanced View</a>
+      </p>
+      <div class="group" id="social-profiles">
+        <a href="https://github.com/stefanosc"><img src="../imgs/GitHub-Mark.png"></a>
+        <a href="https://www.facebook.com/stefanoschiavi"><img src="../imgs/fb-Logo_blue.png"></a>
+        <a href="https://www.linkedin.com/profile/view?id=257399430"><img src="../imgs/LinkedIn.png"></a>
+        <a href="https://twitter.com/stefanoschiavi"><img src="../imgs/Twitter_logo_blue.png"></a>
+      </div>
+    </div>
+  </aside>
+  <section id="content">
+    <article>
+      <div class="group title">
+        <h1>Class in Ruby what is it and how to use it</h1>
+        <p class="date">Sep 25th, 2014</p>
+      </div>
+      <div class="content-body">
+        <p>
+          Today I would like to briefly introduce the concept of Class in ruby.<br>
+          Ruby is one very cool language, that has incredible flexibility and is so clear. To understand classes in Ruby let's consider for a moment how ruby is organized.
+        </p>
+
+        <h2>Everything is an Object</h2>
+        <p>
+          The most important and perhaps famous statement for ruby is "everything is an object". Ruby is a so called an object oriented programming language. This means that it is organized around the concept of objects, trying to replicate the object of the physical / meta-physical world we experience. The focus around its organization is on the objects (actors) rather than their actions.<br>
+          Let's say that we are building a program to keep track of our friends and relationship between each other, here is a basic example of how we could do that:
+        </p>
+<pre><code class="language-ruby">class User
+
+  attr_accessor :name, :birthdate, :friends
+
+  def initialize(name, birthdate, *friends)
+    @name = name
+    @birthdate = Date.parse birthdate
+    @friends = friends
+  end
+
+  def say_my_name
+    puts "Hello there, my name is #{name}"
+  end
+
+  def to_s
+    puts "#{name}, born: #{birthdate}"
+  end
+
+end
+</code></pre>
+
+        <h2>Class as a blueprint</h2>
+        <p>
+          A class is a blueprint for objects to come to life. Following the example above we are creating the mold for a user giving her a name, birthdate and a container to store and retrieve friends. Let's see this in action:
+        </p>
+<pre><code class="language-ruby">sara = User.new 'sara', '1970-01-01'
+=&gt; #&lt;User:0x007f836ba3e530 @birthdate=#&lt;Date: 1970-01-01 ((2440588j,0s,0n),+0s,2299161j)&gt;, @friends=[], @name="sara"&gt;
+scarlet = User.new 'scarlet', '1972-02-02', sara
+=&gt; #&lt;User:0x007f836b9d5d00
+ @birthdate=#&lt;Date: 1972-02-02 ((2441350j,0s,0n),+0s,2299161j)&gt;,
+ @friends=
+  [#&lt;User:0x007f836ba3e530 @birthdate=#&lt;Date: 1970-01-01 ((2440588j,0s,0n),+0s,2299161j)&gt;, @friends=[], @name="sara"&gt;],
+ @name="scarlet"&gt;
+</code></pre>
+
+        <p>
+          First we created a new user 'sara', passing her the name and brithdate, then we created another user 'scarlet' and this time we passed also 'sara' and the cool thing about this is that we can see that when scarlet is instantiated (created) sara appears in scarlet's list of friends.
+        </p>
+
+        <h2>Methods, the object actions</h2>
+        <p>
+          Let's now have a look at methods, which in ruby are those lines of code enclosed between a def .. end like:
+        </p>
+<pre><code class="language-ruby">def some_method
+  #some code here
+end
+</code></pre>
+        <p>
+          Methods are the actions of the objects, they determine what the object can do. In this case let's have a look at a few more examples:
+        </p>
+<pre><code class="language-ruby">sara.to_s
+sara, born: 1970-01-01
+
+sara.say_my_name
+hello there, my name is sara
+</code></pre>
+        <p>
+          I typed sara.to_s and we got:<br>
+          'sara, born: 1970-01-01'<br>
+
+          Isn't that cool? we can define actions and values that our objects manipulate<br>
+          More on ruby next time, enjoy hacking for the benefit of all
+        </p>
+
+      </div>
+    </article>
+  </section>
+
+</body>
+</html>
