@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/prism-m.css">
+  <script src="../assets/prism.js"></script>
+  <title>Scope in ruby Programs</title>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-54343932-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+<body>
+  <aside>
+    <div class="wrapper">
+      <div class="group" id="profile">
+        <img src="../imgs/stefano-schiavi_r.png">
+        <h2>Stefano Schiavi</h2>
+      </div>
+      <nav class="group">
+        <ul>
+          <li><a href="/about-me.html">About Me</a></li>
+          <li><a href="/blog-posts/">Blog</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <p>
+        Passionate explorer of life interested in creating great solutions with the use of code & technology to contribute to the world<br>
+        I am deeply inspired and motivated by <a href="http://www.balancedview.org">Balanced View</a>
+      </p>
+      <div class="group" id="social-profiles">
+        <a href="https://github.com/stefanosc"><img src="../imgs/GitHub-Mark.png"></a>
+        <a href="https://www.facebook.com/stefanoschiavi"><img src="../imgs/fb-Logo_blue.png"></a>
+        <a href="https://www.linkedin.com/profile/view?id=257399430"><img src="../imgs/LinkedIn.png"></a>
+        <a href="https://twitter.com/stefanoschiavi"><img src="../imgs/Twitter_logo_blue.png"></a>
+      </div>
+    </div>
+  </aside>
+  <section id="content">
+    <article>
+      <div class="group title">
+        <h1>Scope in ruby Programs</h1>
+        <p class="date">Oct 4th, 2014</p>
+      </div>
+      <div class="content-body">
+        <p>
+          Today I would like to review the concept of scope.<br>
+        </p>
+
+        <h2>Variable Scope</h2>
+        <p>The concept of scope pertains to where in a program, variables are assigned and where in your code they are available.</p>
+        <p>In a program we can define different scopes as outer and inner (which comes from the code indentation), for example:</p>
+        <pre><code class="language-ruby">outer_var = "hi I am an outer variable"
+
+2.times do
+  puts outer_var + " and I am sent to the screen from an inner scope"
+end
+        </code></pre>
+        <p>The <strong>outer scope</strong> is where we assign the "outer_var", whereas the <strong>inner scope</strong> is where we "<code>puts outer_var"</code></p>
+        <p>As we can immediately understand is that a variable declared in an outer scope is available to an inner scope.It does not work the other way around, so if we had:</p>
+        <pre><code class="language-ruby">2.times do
+  outer_var = "hi I am an inner variable"
+end
+
+puts outer_var + " and I am sent to the screen from an outer scope
+        </code></pre>
+        <p>The above would through an error of this kind:</p>
+        <pre><code class="language-ruby">NameError: undefined local variable or method `outer_var' for main:Object</code></pre>
+        <p>So we can summarize easily by saying:</p>
+        <ul>
+          <li>A variable is always available in the scope where is it assigned and at any inner scope</li>
+          <li>A variable is not available to an outer scope from the one where the variable was assigned</li>
+        </ul>
+        <p></p>
+        <h2>Pass by Reference vs Pass by Value</h2>
+        <p>here I would like to start with a great quote</p>
+        <blockquote>
+          <p>Methods have no access to anything that hasn't been passed in, except constants or global variables. Instance methods in classes have access to instance and class variables.</p>
+        </blockquote>
+        <p>I very much enjoyed this description of what methods have access to.<br />and I would like to add one small addition saying that what is passed to a method is called the argument.<br />As an example:</p>
+        <pre><code class="language-ruby">def my_method argument
+  puts argument
+end
+        </code></pre>
+
+        <p>In the above method the argument is a value that I pass to the method, so if I write:</p>
+
+        <pre><code class="language-ruby">
+my_method(my_variable)
+        </code></pre>
+
+        <p>I pass the "my_variable" to the method so that its value is available to the method.<br /><br /></p>
+        <p>Now in terms of passing by reference or by value I will ask myself a question to further illustrate the concept:<br />When I pass "my_variable" as argument to "my_method" so that its content is available to method what am I passing really?<br />If I was passing by value I would pass simply the content of the object assigned to the variable without making any reference to the object itself. <br />If I was passing by reference I would simply pass a pointer to the object assigned to the variable</p>
+        <p>In general it is said that in ruby objects are passed by value, and not by reference with one little quirk:</p>
+        <p>If in "my_method" I use a method that mutate the object that is calling it then the method will mutate "my_variable" although it was passed by value, here is an example:</p>
+        <pre><code class="language-ruby">
+def my_method argument
+  argument.capitalize!
+end
+        </code></pre>
+        <p>This would not only capitalize the argument but also mutate "my_variable".</p>
+        <p>And finally one last detail:</p>
+        <p>Numbers (integers and floats) have no mutating methods so they will never, ever change if you pass them to a method.</p>
+        <pre><code class="language-ruby">
+a = 1
+some_method(a)
+  puts a
+
+# the above will always always  always show as '1'
+        </code></pre>
+        <p>And this concludes my notes on variables and methods today!</p>
+
+      </div>
+    </article>
+  </section>
+
+</body>
+</html>
