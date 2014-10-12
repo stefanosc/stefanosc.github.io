@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/prism-m.css">
+  <script src="../assets/prism.js"></script>
+  <title>SQL Injection - What it is and how to Prevent it</title>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-54343932-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+<body>
+  <aside>
+    <div class="wrapper">
+      <div class="group" id="profile">
+        <img src="../imgs/stefano-schiavi_r.png">
+        <h2>Stefano Schiavi</h2>
+      </div>
+      <nav class="group">
+        <ul>
+          <li><a href="/about-me.html">About Me</a></li>
+          <li><a href="/blog-posts/">Blog</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <p>
+        Passionate explorer of life interested in creating great solutions with the use of code & technology to contribute to the world<br>
+        I am deeply inspired and motivated by <a href="http://www.balancedview.org">Balanced View</a>
+      </p>
+      <div class="group" id="social-profiles">
+        <a href="https://github.com/stefanosc"><img src="../imgs/GitHub-Mark.png"></a>
+        <a href="https://www.facebook.com/stefanoschiavi"><img src="../imgs/fb-Logo_blue.png"></a>
+        <a href="https://www.linkedin.com/profile/view?id=257399430"><img src="../imgs/LinkedIn.png"></a>
+        <a href="https://twitter.com/stefanoschiavi"><img src="../imgs/Twitter_logo_blue.png"></a>
+      </div>
+    </div>
+  </aside>
+  <section id="content">
+    <article>
+      <div class="group title">
+        <h1>SQL Injection - What it is and how to Prevent it</h1>
+        <p class="date">Oct 12th, 2014</p>
+      </div>
+      <div class="content-body">
+        <p>
+          I thought of jotting down a few lines regarding SQL injection because after supporting a friend to understand the topic I realized that there is a lot of unclear information about it. By searching in Google plenty of posts around stackoverflow, various forums and communities come up, and it takes time and patience to sift all there is to read to find a succinct summary. Let's start
+        </p>
+
+        <h2>How to Perform SQL Injection</h2>
+        <p>
+          A great question / answer can be found at <a href="http://stackoverflow.com/questions/332365/how-does-the-sql-injection-from-the-bobby-tables-xkcd-comic-work">How does the SQL injection from the “Bobby Tables” XKCD comic work?</a><br>
+          The main issue arises from interpolating strings from user input into SQL statements. Like in the great comic, let me break down the very simple user input:
+        </p>
+        <pre><code class="language-sql inline">Robert'); DROP TABLE STUDENTS; --</code></pre>
+        <p>
+          In this case the query is expecting some simple name, like in the example "Robert". The problem with that is that the string also contains some characters that are part of the SQL syntax, namely:
+        </p>
+        <ul>
+          <li><code class="language-sql"> ') </code> the single quote and closing parenthesis simulate closing the string input </li>
+          <li><code class="language-sql"> ; </code> the semicolon simulates the end of the statement and this is the key. After this we can insert any new query we want </li>
+          <li><code class="language-sql"> DROP TABLE STUDENTS; </code> this is the new query </li>
+          <li><code class="language-sql"> -- </code> this is a comment in sql meaning that the closing part of the sql statement will be ignored in this way allowing the sql injection to complete and not incur in any error</li>
+        </ul>
+        <p>Wow that is pretty scary. You expect the user input to be just a simple name and you get a sql statement wiping out an entire table.</p>
+
+        <h2>How to Fix it</h2>
+
+        <p>
+          The simplest and most effective way to practically eliminate SQL injection is to use prepared statements aka parameterized statements. Here is an example of a query that interpolates a string vulnerable to SQL injection:
+        </p>
+        <pre><code class="language-ruby">stmnt = $db.prepare("SELECT name FROM congress_members WHERE location = '#{state}'")
+  stmnt.execute</code></pre>
+        <p>
+          The same statement can be written as:
+        </p>
+        <pre><code class="language-ruby">stmnt = $db.prepare("SELECT name FROM congress_members WHERE location = (?)")
+  stmnt.execute(state)
+        </code></pre>
+
+        <p>
+          So how does this fix the issue? I found very useful this clarification from the<a href="http://en.wikipedia.org/wiki/SQL_injection#Parameterized_statements">Wikipedia article on SQL Injection</a>:
+        </p>
+        <blockquote>
+          <p>With most development platforms, parameterized statements that work with parameters can be used (sometimes called placeholders or bind variables) instead of embedding user input in the statement. A placeholder can only store a value of the given type and not an arbitrary SQL fragment. Hence the SQL injection would simply be treated as a strange (and probably invalid) parameter value.</p>
+        </blockquote>
+
+        <p>So it does not matter what the user input is, at most will generate an invalid statement. That is a very efficient way to nearly completely eliminate SQL injection.</p>
+
+        <p>This is a good introduction to SQL injection. The stackoverflow post and the Wikipedia article shared above offer good opportunities to further research.</p>
+
+      </div>
+    </article>
+  </section>
+
+</body>
+</html>
