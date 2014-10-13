@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/prism-m.css">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/cheatsheet.css">
+    <script src="../assets/prism.js"></script>
+    <title>Javascript Cheatsheet: </title>
+  </head>
+
+  <body>
+    <h1>Javascript Cheatsheet</h1>
+    <section class="group">
+      <h2>Javascript Object</h2>
+      <div class="example">
+        <pre><code class="language-javascript res">var person = {firstName:"Jarred", lastName:"Hare", age:25, eyeColor:"green"};</code></pre>
+        <pre><code class="language-javascript res">var person = new Object();
+person.firstName = "Jarred";
+person.lastName = "Hare";
+person.age = 25;
+person.eyeColor = "green";</code></pre>
+      </div>
+      <div class="description">
+        <p>An object in JS is essentially a container that has properties and methods associated with it. In the example here the properties of the "person" object are set using object literal notation or the constructor function.</p>
+        <p>We can easily add and refer to properties and methods to the object using the . (dot) notation. In the example we have seen we use this notation to create the firstName property on the object person.</p>
+      </div>
+    </section>
+    <hr>
+    <section class="group" >
+      <h2>Javascript Prototype</h2>
+      <div class="example">
+        <pre><code class="language-javascript res">var Person = function Person(firstName, lastName, age, eyeColor) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.age = age;
+  this.eyeColor = eyeColor;
+}
+
+Person.prototype.doubleAge = function() { return this.age * 2 } </code></pre>
+      </div>
+      <div class="description">
+        <p>
+          Every function is assigned a new empty object called prototype. This object has some special treatment, the key point is that when any new object is created it inherits the properties of its constructor's prototype. Like any other object, we can assign both properties and methods to the prototype. Properties are usually defined in the constructor method whereas methods are normally defined using the prototype object.
+        </p>
+        <p>
+          further readings that clarify the relation between constructor and prototype:
+        </p>
+        <ul>
+          <li>
+            <a href="http://pivotallabs.com/javascript-constructors-prototypes-and-the-new-keyword/">JavaScript constructors, prototypes, and the `new` keyword</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/questions/4508313/advantages-of-using-prototype-vs-defining-methods-straight-in-the-constructor">Advantages of using prototype, vs defining methods straight in the constructor?</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <h2>Understanding Javascript as OOP</h2>
+      <p>
+        This is far from being a cheatsheet or event a good article, but I didn't want to leave this without pointing to other valuable resources that clarify how JS can be used as an Object Oriented Programming despite its lack of built features that make it ready out of the box.
+      </p>
+      <p>
+
+        <a href="http://stackoverflow.com/questions/55611/javascript-private-methods">JavaScript private methods</a><br>
+        <a href="http://javascript.crockford.com/private.html">Private Members in JavaScript</a><br>
+        <a href="http://eclipsesource.com/blogs/2013/07/05/private-members-in-javascript/">Four ways to deal with private members in JavaScript</a><br>
+        <a href="http://phrogz.net/js/classes/OOPinJS.html">OOP in JS, Part 1 : Public/Private Variables and Methods</a><br>
+      </p>
+    </section>
+  </body>
+</html>
