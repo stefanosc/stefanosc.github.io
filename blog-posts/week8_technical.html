@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/prism-m.css">
+  <script src="../assets/prism.js"></script>
+  <title>An Introduction to Big O</title>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-54343932-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+<body>
+  <aside>
+    <div class="wrapper">
+      <div class="group" id="profile">
+        <img src="../imgs/stefano-schiavi_r.png">
+        <h2>Stefano Schiavi</h2>
+      </div>
+      <nav class="group">
+        <ul>
+          <li><a href="/about-me.html">About Me</a></li>
+          <li><a href="/blog-posts/">Blog</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <p>
+        Passionate explorer of life interested in creating great solutions with the use of code & technology to contribute to the world<br>
+        I am deeply inspired and motivated by <a href="http://www.balancedview.org">Balanced View</a>
+      </p>
+      <div class="group" id="social-profiles">
+        <a href="https://github.com/stefanosc"><img src="../imgs/GitHub-Mark.png"></a>
+        <a href="https://www.facebook.com/stefanoschiavi"><img src="../imgs/fb-Logo_blue.png"></a>
+        <a href="https://www.linkedin.com/profile/view?id=257399430"><img src="../imgs/LinkedIn.png"></a>
+        <a href="https://twitter.com/stefanoschiavi"><img src="../imgs/Twitter_logo_blue.png"></a>
+      </div>
+    </div>
+  </aside>
+  <section id="content">
+    <article>
+      <div class="group title">
+        <h1>An Introduction to Big O</h1>
+        <p class="date">Oct 19th, 2014</p>
+      </div>
+      <div class="content-body">
+        <p>
+          Big O is a function notation which is used in computer science to describe in simple terms how the growth rate of an algorithm affects its efficiency (for example in terms of time or space it needs to complete).
+        </p>
+
+        <h2>Understand Big O by example</h2>
+        <p>
+          If you read the Wikipedia article <a href="http://en.wikipedia.org/wiki/Big_O_notation">Big O notation</a> you may feel overwhelmed and rather lost if you are not familiar with several concepts in mathematics.<br>
+          In this article I will try to give a basic high level understanding of how to read Big O notation and make sense of it without needing to go into too many details. Let's start with some code:
+        </p>
+        <pre><code class="language-ruby">def find_in_arr(value, arr)
+  arr.each { |el| return true if value == el }
+  false
+end
+
+find_in_arr('B', ['A', 'B', 'C']) # => true
+find_in_arr('X', ['A', 'B', 'C']) # => false</code></pre>
+        <p>
+          In the above method we return true if wee can find our value in the array otherwise we return false. This one of the simplest algorithm we can think of and it's great to understand how Big O works.<br>
+          Now let's consider for a moment how long the 2 different calls to the method take to compute. It's clear that the first call where we look for <code class="language-ruby"> 'B' </code> will compute faster since the method can return at the second iteration.<br>
+          The second call to <code class="language-ruby"> find_in_arr </code> takes longer because it will iterate through all elements without finding a match.
+        </p>
+        <p>
+          One important aspect to understand in Big O is that it always takes into account the worst case scenario, which in mathematics is referred to as <em>upper bound</em>.<br>
+          Finally in terms of our <code class="language-ruby"> find_in_arr </code> method we can say that, as the array increases in size the upper bound of the time it requires to compute is proportional to the size. Using Big O you would write it as <strong>O(n)</strong><br>
+          Let's look at one more example, a bit of a silly one:
+        </p>
+        <pre><code class="language-ruby">def am_i_true?(obj)
+  !!obj
+end
+
+a = "hello"
+b = false
+
+am_i_true? a  # => true
+am_i_true? b  # => false</code></pre>
+        <p>
+          We can see that here passing in whatever obj doesn't really make much difference to the method since it's only task is to return the boolean value of the obj. To describe this method in terms of Big O you would write <strong>O(1)</strong> which means this is a straight line. It is a constant.
+        </p>
+        <p>
+          Another interesting example often used to clarify the Big O notation is nested iteration for example:
+        </p>
+        <pre><code class="language-ruby">def arr_prod(arr)
+  result = []
+  arr.each do |outer|
+    arr.each do |inner|
+      result << [outer, inner]
+    end
+  end
+  result
+end
+
+arr_prod ['x', 'y']  # => [["x", "x"], ["x", "y"], ["y", "x"], ["y", "y"]]</code></pre>
+        <p>
+          In this case we try to create a product of each element in an array with all other elements.<br>
+          When the array increases in size, the method will not only have to iterate through more elements but each additional element it will have to iterate once again through the entire array. This is the perfect example to represent exponential growth which in Big O is represented by <strong>O(n^2)</strong> or <strong>O(n&sup2;)</strong>
+        </p>
+        <p>
+        This concludes a basic introduction to Big O. If you want to learn more I suggest having a look at the Wikipedia article <a href="http://en.wikipedia.org/wiki/Big_O_notation">Big O notation</a> as well as <a href="http://bigocheatsheet.com/#chart">this great chart</a> that plots various common Big O functins
+        </p>
+      </div>
+    </article>
+  </section>
+
+</body>
+</html>
